@@ -24,8 +24,13 @@ public abstract class Entity {
         camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
     }
 
-    public abstract void update(float dt);
-    public abstract void render(SpriteBatch batch);
+//    public abstract void update(float dt);
+//    public abstract void render(SpriteBatch batch);
+
+    public float getX() { return x; }
+    public float getY() { return y; }
+    public float getWidth() { return width; }
+    public float getHeight() { return height; }
 
 
 }

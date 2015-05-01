@@ -20,22 +20,26 @@ public class GridTile extends Entity {
     private TextureRegion red;
     private TextureRegion green;
     private TextureRegion blue;
-    private TextureRegion redhead;
-    private TextureRegion greenhead;
-    private TextureRegion bluehead;
+    private TextureRegion background;
+    private TextureRegion alpha;
+    private TextureRegion largeglow;
+    private TextureRegion smallglow;
+    private TextureRegion nothing;
 
     public GridTile(int color, float x, float y, float width, float height, int row, int col) {
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
+
         red = CubeBreak.tal.getAtlas("pack").findRegion("red");
         green = CubeBreak.tal.getAtlas("pack").findRegion("green");
         blue = CubeBreak.tal.getAtlas("pack").findRegion("blue");
-        redhead = CubeBreak.tal.getAtlas("pack").findRegion("redhead");
-        greenhead = CubeBreak.tal.getAtlas("pack").findRegion("greenhead");
-        bluehead = CubeBreak.tal.getAtlas("pack").findRegion("bluehead");
+        background = CubeBreak.tal.getAtlas("pack").findRegion("background");
+        alpha = CubeBreak.tal.getAtlas("pack").findRegion("alpha");
+        largeglow = CubeBreak.tal.getAtlas("pack").findRegion("largeglow");
+        smallglow = CubeBreak.tal.getAtlas("pack").findRegion("smallglow");
+        nothing = CubeBreak.tal.getAtlas("pack").findRegion("nothing");
 
         init(color, x, y, width, height, row, col);
-
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
     }
 
     private void init(int color, float x, float y, float width, float height, int row, int col) {
@@ -49,10 +53,32 @@ public class GridTile extends Entity {
     }
 
     public void update(float dt) {
-
     }
 
     public void render(SpriteBatch batch) {
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        drawTile(batch);
+        batch.end();
+    }
 
+    private void drawTile(SpriteBatch batch) {
+        if (getDrawColor() == 1) {
+            batch.draw(red, getX(), getY(), getWidth(), getHeight());
+        } else if (getDrawColor() == 2) {
+            batch.draw(green, getX(), getY(), getWidth(), getHeight());
+        } else if (getDrawColor() == 3) {
+            batch.draw(blue, getX(), getY(), getWidth(), getHeight());
+        } else if (getDrawColor() == 4) {
+            batch.draw(alpha, getX(), getY(), getWidth(), getHeight());
+        } else if (getDrawColor() == 5) {
+            batch.draw(largeglow, getX(), getY(), getWidth(), getHeight());
+        } else if (getDrawColor() == 6) {
+            batch.draw(smallglow, getX(), getY(), getWidth(), getHeight());
+        }
+    }
+
+    private int getDrawColor() {
+        return color;
     }
 }

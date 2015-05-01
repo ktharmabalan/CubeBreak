@@ -1,8 +1,8 @@
 package ca.codemake.CubeBreak.state;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import ca.codemake.CubeBreak.Constants;
 import ca.codemake.CubeBreak.ui.GridBoard;
 
 /**
@@ -12,35 +12,24 @@ public class PlayState extends State {
 
     private GridBoard gridBoard;
 
-    private float size;
-    private float row;
-    private float col;
-    private float width;
-    private float height;
+    private int row;
+    private int col;
 
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-
         init();
     }
 
     private void init() {
-        size = 10;
-        row = 5;
-        col = 1;
-        width = size * col;
-        height = size * row;
+        row = 1;
+        col = 5;
 
-        float x = (Constants.WIDTH / 2) - width;
-        float y = (Constants.HEIGHT / 2) - height;
-
-        gridBoard = new GridBoard(x, y, width, height, row, col, size);
-
+        gridBoard = new GridBoard(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), row, col);
     }
 
     public void update(float dt) {
-
+        gridBoard.update(dt);
     }
 
     public void render(SpriteBatch batch) {
@@ -48,6 +37,5 @@ public class PlayState extends State {
     }
 
     public void handleInput(float dt) {
-
     }
 }

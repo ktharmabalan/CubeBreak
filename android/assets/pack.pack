@@ -3,79 +3,149 @@ pack.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-black
+background
   rotate: false
-  xy: 1, 1
+  xy: 1, 61
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+alpha
+  rotate: false
+  xy: 1, 49
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-blackhead
+black
   rotate: false
-  xy: 13, 1
+  xy: 483, 851
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+black1
+  rotate: false
+  xy: 1, 37
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+blackhead1
+  rotate: false
+  xy: 13, 49
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 blue
   rotate: false
-  xy: 25, 1
+  xy: 483, 839
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-bluehead
+blue1
   rotate: false
-  xy: 37, 1
+  xy: 495, 851
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+bluehead1
+  rotate: false
+  xy: 1, 25
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 green
   rotate: false
-  xy: 49, 1
+  xy: 13, 37
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-greenhead
+green1
   rotate: false
-  xy: 61, 1
+  xy: 25, 49
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+greenhead1
+  rotate: false
+  xy: 483, 827
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+largeglow
+  rotate: false
+  xy: 495, 839
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+nothing
+  rotate: false
+  xy: 1, 13
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 red
   rotate: false
-  xy: 73, 1
+  xy: 13, 25
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-redhead
+red1
   rotate: false
-  xy: 85, 1
+  xy: 25, 37
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-warp
+redhead1
   rotate: false
-  xy: 97, 1
+  xy: 37, 49
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-whitehead
+smallglow
   rotate: false
-  xy: 109, 1
+  xy: 483, 815
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
-yellowhead
+warp1
   rotate: false
-  xy: 121, 1
+  xy: 495, 827
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+whitealpha
+  rotate: false
+  xy: 1, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+whitehead1
+  rotate: false
+  xy: 13, 13
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+yellowhead1
+  rotate: false
+  xy: 25, 25
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
