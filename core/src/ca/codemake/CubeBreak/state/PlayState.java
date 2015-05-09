@@ -1,5 +1,6 @@
 package ca.codemake.CubeBreak.state;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -22,13 +23,14 @@ public class PlayState extends State {
     }
 
     private void init() {
-        row = 1;
-        col = 5;
+        row = 6;
+        col = 10;
 
         gridBoard = new GridBoard(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), row, col);
     }
 
     public void update(float dt) {
+        handleInput(dt);
         gridBoard.update(dt);
     }
 
@@ -37,5 +39,8 @@ public class PlayState extends State {
     }
 
     public void handleInput(float dt) {
+//        if(Gdx.app.getType() != Application.ApplicationType.Desktop) return;
+
+
     }
 }

@@ -3,150 +3,367 @@ pack.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-background
+cloud
   rotate: false
-  xy: 1, 61
-  size: 480, 800
-  orig: 480, 800
+  xy: 1, 13
+  size: 32, 16
+  orig: 32, 16
   offset: 0, 0
   index: -1
-alpha
+cloud1
   rotate: false
-  xy: 1, 49
-  size: 10, 10
-  orig: 10, 10
+  xy: 35, 13
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 69, 13
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+cloud3
+  rotate: false
+  xy: 103, 13
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+cloud4
+  rotate: false
+  xy: 137, 13
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+mountain
+  rotate: false
+  xy: 171, 13
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+mountain1
+  rotate: false
+  xy: 205, 13
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+mountain2
+  rotate: false
+  xy: 239, 13
+  size: 32, 16
+  orig: 32, 16
   offset: 0, 0
   index: -1
 black
   rotate: false
-  xy: 483, 851
-  size: 10, 10
-  orig: 10, 10
-  offset: 0, 0
-  index: -1
-black1
-  rotate: false
-  xy: 1, 37
-  size: 10, 10
-  orig: 10, 10
-  offset: 0, 0
-  index: -1
-blackhead1
-  rotate: false
-  xy: 13, 49
-  size: 10, 10
-  orig: 10, 10
+  xy: 273, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 blue
   rotate: false
-  xy: 483, 839
-  size: 10, 10
-  orig: 10, 10
+  xy: 291, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-blue1
+coin
   rotate: false
-  xy: 495, 851
-  size: 10, 10
-  orig: 10, 10
+  xy: 309, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-bluehead1
+coin1
   rotate: false
-  xy: 1, 25
-  size: 10, 10
-  orig: 10, 10
+  xy: 327, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+coin2
+  rotate: false
+  xy: 345, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+coin3
+  rotate: false
+  xy: 363, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+coin4
+  rotate: false
+  xy: 381, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+corner
+  rotate: false
+  xy: 399, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+darkgrey
+  rotate: false
+  xy: 417, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+diamond
+  rotate: false
+  xy: 435, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 green
   rotate: false
-  xy: 13, 37
-  size: 10, 10
-  orig: 10, 10
+  xy: 453, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-green1
+halfheart
   rotate: false
-  xy: 25, 49
-  size: 10, 10
-  orig: 10, 10
+  xy: 471, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-greenhead1
+heart1
   rotate: false
-  xy: 483, 827
-  size: 10, 10
-  orig: 10, 10
+  xy: 489, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-largeglow
+heart2
   rotate: false
-  xy: 495, 839
-  size: 10, 10
-  orig: 10, 10
+  xy: 507, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-nothing
+heart3
   rotate: false
-  xy: 1, 13
-  size: 10, 10
-  orig: 10, 10
+  xy: 525, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+heart4
+  rotate: false
+  xy: 543, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+lightgrey
+  rotate: false
+  xy: 561, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 red
   rotate: false
-  xy: 13, 25
-  size: 10, 10
-  orig: 10, 10
+  xy: 579, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-red1
+ruby
   rotate: false
-  xy: 25, 37
-  size: 10, 10
-  orig: 10, 10
+  xy: 597, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-redhead1
+ruby1
   rotate: false
-  xy: 37, 49
-  size: 10, 10
-  orig: 10, 10
+  xy: 615, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-smallglow
+saphire
   rotate: false
-  xy: 483, 815
-  size: 10, 10
-  orig: 10, 10
+  xy: 633, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-warp1
+select
   rotate: false
-  xy: 495, 827
-  size: 10, 10
-  orig: 10, 10
+  xy: 651, 13
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
-whitealpha
+star
+  rotate: false
+  xy: 669, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+sun
+  rotate: false
+  xy: 687, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+sun1
+  rotate: false
+  xy: 705, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+alpha
   rotate: false
   xy: 1, 1
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
+black1
+  rotate: false
+  xy: 723, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+blackhead1
+  rotate: false
+  xy: 13, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+blue1
+  rotate: false
+  xy: 735, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+bluehead1
+  rotate: false
+  xy: 25, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+green1
+  rotate: false
+  xy: 747, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+greenhead1
+  rotate: false
+  xy: 37, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+largeglow
+  rotate: false
+  xy: 759, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+nothing
+  rotate: false
+  xy: 49, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+red1
+  rotate: false
+  xy: 771, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+redhead1
+  rotate: false
+  xy: 61, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+samplemap
+  rotate: false
+  xy: 783, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+smallglow
+  rotate: false
+  xy: 73, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+warp1
+  rotate: false
+  xy: 795, 19
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+whitealpha
+  rotate: false
+  xy: 85, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
 whitehead1
   rotate: false
-  xy: 13, 13
+  xy: 807, 19
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 yellowhead1
   rotate: false
-  xy: 25, 25
+  xy: 97, 1
   size: 10, 10
   orig: 10, 10
+  offset: 0, 0
+  index: -1
+darkbar16
+  rotate: false
+  xy: 723, 16
+  size: 16, 1
+  orig: 16, 1
+  offset: 0, 0
+  index: -1
+lightbar16
+  rotate: false
+  xy: 819, 28
+  size: 16, 1
+  orig: 16, 1
   offset: 0, 0
   index: -1

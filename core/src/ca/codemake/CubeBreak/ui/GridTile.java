@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import ca.codemake.CubeBreak.Constants;
 import ca.codemake.CubeBreak.CubeBreak;
+import ca.codemake.CubeBreak.helpers.Assets;
 
 /**
  * Created by Kajan on 4/29/2015.
@@ -20,24 +21,22 @@ public class GridTile extends Entity {
     private TextureRegion red;
     private TextureRegion green;
     private TextureRegion blue;
-    private TextureRegion background;
-    private TextureRegion alpha;
-    private TextureRegion largeglow;
-    private TextureRegion smallglow;
-    private TextureRegion nothing;
+    private TextureRegion black;
+    private TextureRegion darkbar16;
+    private TextureRegion lightbar16;
+    private TextureRegion select;
 
     public GridTile(int color, float x, float y, float width, float height, int row, int col) {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
 
-        red = CubeBreak.tal.getAtlas("pack").findRegion("red");
-        green = CubeBreak.tal.getAtlas("pack").findRegion("green");
-        blue = CubeBreak.tal.getAtlas("pack").findRegion("blue");
-        background = CubeBreak.tal.getAtlas("pack").findRegion("background");
-        alpha = CubeBreak.tal.getAtlas("pack").findRegion("alpha");
-        largeglow = CubeBreak.tal.getAtlas("pack").findRegion("largeglow");
-        smallglow = CubeBreak.tal.getAtlas("pack").findRegion("smallglow");
-        nothing = CubeBreak.tal.getAtlas("pack").findRegion("nothing");
+        red = Assets.instance.tiles.red;
+        green = Assets.instance.tiles.green;
+        blue = Assets.instance.tiles.blue;
+        black = Assets.instance.tiles.black;
+        select = Assets.instance.tiles.select;
+        darkbar16 = Assets.instance.dividers.darkbar16;
+        lightbar16 = Assets.instance.dividers.lightbar16;
 
         init(color, x, y, width, height, row, col);
     }
@@ -59,22 +58,31 @@ public class GridTile extends Entity {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawTile(batch);
+        if (row != 0)
+        batch.draw(darkbar16, getX() + 1, getY(), getWidth() - 2, 1);
+        if (col != 0)
+        batch.draw(lightbar16, getX(), getY() + 1, 1, getHeight() - 2);
         batch.end();
     }
 
     private void drawTile(SpriteBatch batch) {
         if (getDrawColor() == 1) {
+//            batch.draw(select, getX(), getY(), getWidth(), getHeight());
+
             batch.draw(red, getX(), getY(), getWidth(), getHeight());
         } else if (getDrawColor() == 2) {
+//            batch.draw(select, getX(), getY(), getWidth(), getHeight());
             batch.draw(green, getX(), getY(), getWidth(), getHeight());
+//            batch.setColor(0, 0, 0, 0.25f);
+//            batch.draw(alpha, getX(), getY(), getWidth(), getHeight());
+//            batch.setColor(1, 1, 1, 1);
         } else if (getDrawColor() == 3) {
+//            batch.draw(select, getX(), getY(), getWidth(), getHeight());
             batch.draw(blue, getX(), getY(), getWidth(), getHeight());
+//            batch.draw(largeglow, getX(), getY(), getWidth(), getHeight());
         } else if (getDrawColor() == 4) {
-            batch.draw(alpha, getX(), getY(), getWidth(), getHeight());
-        } else if (getDrawColor() == 5) {
-            batch.draw(largeglow, getX(), getY(), getWidth(), getHeight());
-        } else if (getDrawColor() == 6) {
-            batch.draw(smallglow, getX(), getY(), getWidth(), getHeight());
+//            batch.draw(select, getX(), getY(), getWidth(), getHeight());
+            batch.draw(black, getX(), getY(), getWidth(), getHeight());
         }
     }
 
