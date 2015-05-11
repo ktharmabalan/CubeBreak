@@ -1,9 +1,9 @@
 package ca.codemake.CubeBreak.state;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import ca.codemake.CubeBreak.CubeBreak;
 import ca.codemake.CubeBreak.ui.GridBoard;
 
 /**
@@ -40,7 +40,14 @@ public class PlayState extends State {
 
     public void handleInput(float dt) {
 //        if(Gdx.app.getType() != Application.ApplicationType.Desktop) return;
+        if(Gdx.input.isTouched()) {
+            mouse.x = Gdx.input.getX();
+            mouse.y = Gdx.input.getY();
+            CubeBreak.camera.unproject(mouse);
 
+            System.out.println(((int)(mouse.x / GridBoard.SIZE)) + ", " + ((int)(mouse.y / GridBoard.SIZE)));
+//            System.out.println(gridBoard.gridTiles[(int)(mouse.x / GridBoard.SIZE)][(int)(mouse.y / GridBoard.SIZE)].getColor());
+        }
 
     }
 }

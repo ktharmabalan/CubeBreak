@@ -5,16 +5,19 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import ca.codemake.CubeBreak.helpers.Assets;
 import ca.codemake.CubeBreak.state.GameStateManager;
 import ca.codemake.CubeBreak.state.PlayState;
+import ca.codemake.CubeBreak.state.State;
 
 public class CubeBreak extends ApplicationAdapter {
 
     private GameStateManager gsm;
     private SpriteBatch batch;
+    public static OrthographicCamera camera;
 
     private boolean dispose;
     private boolean paused;
@@ -47,6 +50,14 @@ public class CubeBreak extends ApplicationAdapter {
     private void init() {
         batch = new SpriteBatch();
 
+        camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
+//        camera = new OrthographicCamera();
+//        camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
+        camera.setToOrtho(false);
+//        camera.position.set(0, 0, 0);
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+
         // Game is active on start
         paused = false;
 
@@ -55,8 +66,8 @@ public class CubeBreak extends ApplicationAdapter {
     }
 
     public void resize (int width, int height) {
-//        camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
-//        camera.update();
+//        State.camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
+//        State.camera.update();
     }
     public void pause() { paused = true; }
 

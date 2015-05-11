@@ -1,17 +1,14 @@
 package ca.codemake.CubeBreak.ui;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import ca.codemake.CubeBreak.Constants;
-import ca.codemake.CubeBreak.CubeBreak;
 import ca.codemake.CubeBreak.helpers.Assets;
 
 /**
  * Created by Kajan on 4/29/2015.
  */
-public class GridTile extends Entity {
+public class GridTile extends AbstractGameObject {
 
     private int row;
     private int col;
@@ -27,9 +24,6 @@ public class GridTile extends Entity {
     private TextureRegion select;
 
     public GridTile(int color, float x, float y, float width, float height, int row, int col) {
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
-
         red = Assets.instance.tiles.red;
         green = Assets.instance.tiles.green;
         blue = Assets.instance.tiles.blue;
@@ -43,10 +37,12 @@ public class GridTile extends Entity {
 
     private void init(int color, float x, float y, float width, float height, int row, int col) {
         this.color = color;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.dimension.set(width, height);
+        this.position.set(x, y);
+//        this.x = x;
+//        this.y = y;
+//        this.width = width;
+//        this.height = height;
         this.row = row;
         this.col = col;
     }
@@ -55,7 +51,6 @@ public class GridTile extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawTile(batch);
         if (row != 0)
@@ -89,4 +84,6 @@ public class GridTile extends Entity {
     private int getDrawColor() {
         return color;
     }
+
+    public int getColor() { return getDrawColor(); }
 }

@@ -11,7 +11,7 @@ import ca.codemake.CubeBreak.Constants;
  */
 public abstract class State {
     protected GameStateManager gsm;
-    protected OrthographicCamera camera;
+//    public static OrthographicCamera camera;
     protected Vector3 mouse;
 
     protected State(GameStateManager gsm) {
@@ -20,8 +20,10 @@ public abstract class State {
 
     private void init(GameStateManager gsm) {
         this.gsm = gsm;
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
+//        camera = new OrthographicCamera();
+//        camera.setToOrtho(true, Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
+////        camera.position.set(0, 0, 0);
+//        camera.update();
         mouse = new Vector3();
     }
 
