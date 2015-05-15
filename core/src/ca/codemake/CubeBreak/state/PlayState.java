@@ -3,7 +3,9 @@ package ca.codemake.CubeBreak.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import ca.codemake.CubeBreak.Constants;
 import ca.codemake.CubeBreak.CubeBreak;
+import ca.codemake.CubeBreak.helpers.Level;
 import ca.codemake.CubeBreak.ui.GridBoard;
 
 /**
@@ -11,11 +13,7 @@ import ca.codemake.CubeBreak.ui.GridBoard;
  */
 public class PlayState extends State {
 
-    private GridBoard gridBoard;
-
-    private int row;
-    private int col;
-
+    public Level level;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -23,29 +21,38 @@ public class PlayState extends State {
     }
 
     private void init() {
-        row = 6;
-        col = 10;
+        initLevel();
+    }
 
-        gridBoard = new GridBoard(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), row, col);
+    private void initLevel() {
+        level = new Level(Constants.LEVEL_TEST);
     }
 
     public void update(float dt) {
+        level.update(dt);
         handleInput(dt);
-        gridBoard.update(dt);
     }
 
     public void render(SpriteBatch batch) {
-        gridBoard.render(batch);
+        level.render(batch);
     }
 
     public void handleInput(float dt) {
 //        if(Gdx.app.getType() != Application.ApplicationType.Desktop) return;
         if(Gdx.input.isTouched()) {
-            mouse.x = Gdx.input.getX();
-            mouse.y = Gdx.input.getY();
-            CubeBreak.camera.unproject(mouse);
 
-            System.out.println(((int)(mouse.x / GridBoard.SIZE)) + ", " + ((int)(mouse.y / GridBoard.SIZE)));
+//            mouse.x = (Gdx.graphics.getWidth() - Gdx.input.getX());
+            mouse.x = Gdx.input.getX();
+//            mouse.y = Gdx.input.getY();
+            mouse.y = (Gdx.graphics.getHeight() - Gdx.input.getY());
+//            CubeBreak.camera.unproject(mouse);
+
+//            System.out.println(Gdx.input.getX() + "|" + Gdx.input.getY());
+//            System.out.println(mouse.x + "|" + mouse.y);
+            level.handleInput(dt, mouse);
+//            System.out.println(GridBoard.SIZE);
+//            System.out.println(mouse);
+//            System.out.println(((int)(mouse.x / GridBoard.SIZE)) + ", " + ((int)(mouse.y / GridBoard.SIZE)));
 //            System.out.println(gridBoard.gridTiles[(int)(mouse.x / GridBoard.SIZE)][(int)(mouse.y / GridBoard.SIZE)].getColor());
         }
 

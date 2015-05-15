@@ -72,6 +72,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion select;
         public final AtlasRegion lightgrey;
         public final AtlasRegion darkgrey;
+        public final AtlasRegion nothing;
 
         public AssetTiles(TextureAtlas atlas) {
             red = atlas.findRegion("red");
@@ -81,6 +82,7 @@ public class Assets implements Disposable, AssetErrorListener {
             lightgrey = atlas.findRegion("lightgrey");
             darkgrey = atlas.findRegion("darkgrey");
             select = atlas.findRegion("select");
+            nothing = atlas.findRegion("nothing");
         }
     }
 

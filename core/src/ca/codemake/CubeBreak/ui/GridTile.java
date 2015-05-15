@@ -15,30 +15,14 @@ public class GridTile extends AbstractGameObject {
 
     private int color;
 
-    private TextureRegion red;
-    private TextureRegion green;
-    private TextureRegion blue;
-    private TextureRegion black;
-    private TextureRegion darkbar16;
-    private TextureRegion lightbar16;
-    private TextureRegion select;
-
     public GridTile(int color, float x, float y, float width, float height, int row, int col) {
-        red = Assets.instance.tiles.red;
-        green = Assets.instance.tiles.green;
-        blue = Assets.instance.tiles.blue;
-        black = Assets.instance.tiles.black;
-        select = Assets.instance.tiles.select;
-        darkbar16 = Assets.instance.dividers.darkbar16;
-        lightbar16 = Assets.instance.dividers.lightbar16;
-
         init(color, x, y, width, height, row, col);
     }
 
     private void init(int color, float x, float y, float width, float height, int row, int col) {
         this.color = color;
-        this.dimension.set(width, height);
-        this.position.set(x, y);
+        dimension.set(width, height);
+        position.set(x, y);
 //        this.x = x;
 //        this.y = y;
 //        this.width = width;
@@ -53,10 +37,12 @@ public class GridTile extends AbstractGameObject {
     public void render(SpriteBatch batch) {
         batch.begin();
         drawTile(batch);
-        if (row != 0)
-        batch.draw(darkbar16, getX() + 1, getY(), getWidth() - 2, 1);
-        if (col != 0)
-        batch.draw(lightbar16, getX(), getY() + 1, 1, getHeight() - 2);
+//        if (row != 0)
+        if(getColor() != 0)
+            batch.draw(Assets.instance.dividers.darkbar16, getX() + 1, getY(), getWidth() - 2, 1);
+//        if (col != 0)
+        if(getColor() != 0)
+            batch.draw(Assets.instance.dividers.lightbar16, getX(), getY() + 1, 1, getHeight() - 2);
         batch.end();
     }
 
@@ -64,20 +50,23 @@ public class GridTile extends AbstractGameObject {
         if (getDrawColor() == 1) {
 //            batch.draw(select, getX(), getY(), getWidth(), getHeight());
 
-            batch.draw(red, getX(), getY(), getWidth(), getHeight());
+            batch.draw(Assets.instance.tiles.red, getX(), getY(), getWidth(), getHeight());
         } else if (getDrawColor() == 2) {
 //            batch.draw(select, getX(), getY(), getWidth(), getHeight());
-            batch.draw(green, getX(), getY(), getWidth(), getHeight());
+            batch.draw(Assets.instance.tiles.green, getX(), getY(), getWidth(), getHeight());
 //            batch.setColor(0, 0, 0, 0.25f);
 //            batch.draw(alpha, getX(), getY(), getWidth(), getHeight());
 //            batch.setColor(1, 1, 1, 1);
         } else if (getDrawColor() == 3) {
 //            batch.draw(select, getX(), getY(), getWidth(), getHeight());
-            batch.draw(blue, getX(), getY(), getWidth(), getHeight());
+            batch.draw(Assets.instance.tiles.blue, getX(), getY(), getWidth(), getHeight());
 //            batch.draw(largeglow, getX(), getY(), getWidth(), getHeight());
         } else if (getDrawColor() == 4) {
 //            batch.draw(select, getX(), getY(), getWidth(), getHeight());
-            batch.draw(black, getX(), getY(), getWidth(), getHeight());
+            batch.draw(Assets.instance.tiles.black, getX(), getY(), getWidth(), getHeight());
+        } else if (getDrawColor() == 0) {
+//            batch.draw(select, getX(), getY(), getWidth(), getHeight());
+            batch.draw(Assets.instance.tiles.nothing, getX(), getY(), getWidth(), getHeight());
         }
     }
 

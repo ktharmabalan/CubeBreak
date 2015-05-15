@@ -1,5 +1,7 @@
 package ca.codemake.CubeBreak;
 
+import com.badlogic.gdx.Gdx;
+
 /**
  * Created by Kajan on 4/29/2015.
  */
@@ -9,8 +11,8 @@ public class Constants {
     public static final String TITLE = "Cube Crash";
 
     // Dimensions
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 480;
+    public static final int DESKTOP_WIDTH = 480;
+    public static final int DESKTOP_HEIGHT = 800;
 
     // Visible game world is 5 meters wide
     public static float VIEWPORT_WIDTH = 5.0f;
@@ -27,6 +29,7 @@ public class Constants {
 
     // Locastion of image file for Level 01
     public static final String LEVEL_01 = "levels/level1.png";
+    public static final String LEVEL_TEST = "levels/level2.png";
 
     // Amount of extra lives at level start
     public static final int LIVES_START = 5;

@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
  * Created by Kajan on 5/8/2015.
  */
 public class CameraHelper {
+    private static final String TAG = CameraHelper.class.getName();
+
     private final float MAX_ZOOM_IN = 0.25f;
     private final float MAX_ZOOM_OUT = 10.0f;
 
@@ -33,14 +35,37 @@ public class CameraHelper {
         this.position.set(x, y);
     }
 
-    public Vector2 getPosition () { return position; }
-    public void addZoon (float amount) { setZoom(zoom + amount); }
-    public void setZoom(float zoom) { this.zoom = MathUtils.clamp(zoom, MAX_ZOOM_IN, MAX_ZOOM_OUT); }
-    public float getZoom() { return zoom; }
-    public void setTarget (Sprite target) { this.target = target; }
-    public Sprite getTarget() { return target; }
-    public boolean hasTarget() { return target != null; }
-    public boolean hasTarget(Sprite target) { return hasTarget() && this.target.equals(target); }
+    public Vector2 getPosition () {
+        return position;
+    }
+
+    public void addZoon (float amount) {
+        setZoom(zoom + amount);
+    }
+
+    public void setZoom(float zoom) {
+        this.zoom = MathUtils.clamp(zoom, MAX_ZOOM_IN, MAX_ZOOM_OUT);
+    }
+
+    public float getZoom() {
+        return zoom;
+    }
+
+    public void setTarget (Sprite target) {
+        this.target = target;
+    }
+
+    public Sprite getTarget() {
+        return target;
+    }
+
+    public boolean hasTarget() {
+        return target != null;
+    }
+
+    public boolean hasTarget(Sprite target) {
+        return hasTarget() && this.target.equals(target);
+    }
 
     public void applyTo (OrthographicCamera camera) {
         camera.position.x = position.x;

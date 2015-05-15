@@ -1,12 +1,12 @@
 package ca.codemake.CubeBreak.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.Random;
 
-import ca.codemake.CubeBreak.Constants;
 import ca.codemake.CubeBreak.helpers.Assets;
 
 /**
@@ -20,12 +20,14 @@ public class GridBoard extends AbstractGameObject {
     private float xOffset;
     private float yOffset;
     public static float SIZE;
+    private float width;
+    private float height;
     private int row;
     private int col;
     public GridTile[][] gridTiles;
     private Random rand;
 
-    public GridBoard(float x, float y, int row, int col) {
+    public GridBoard(float x, float y, float width, float height, int row, int col) {
 //        Array<TextureRegion> regions = new Array<TextureRegion>();
 //        regions.add(Assets.instance.tiles.darkgrey);
 //        regions.add(Assets.instance.tiles.lightgrey);
@@ -33,27 +35,43 @@ public class GridBoard extends AbstractGameObject {
         darkgrey = Assets.instance.tiles.darkgrey;
         lightgrey = Assets.instance.tiles.lightgrey;
 
-        init(x, y, row, col);
+        init(x, y, width, height, row, col);
 
-        gridTiles = new GridTile[row][col];
-        System.out.println(gridTiles.length + ", " + gridTiles[0].length);
+        this.gridTiles = new GridTile[row][col];
+        this.gridTiles = gridTiles;
+//        System.out.println(gridTiles.length + ", " + gridTiles[0].length);
 
         drawBoard();
-        createGrid();
+//        createGrid();
 
+//        setGrid(gridTiles);
     }
 
-    private void init(float x, float y, int row, int col) {
+    public void setGrid(GridTile[][] gridTiles) {
+        this.gridTiles = gridTiles;
+        System.out.println("SET");
+    }
+
+    private void init(float x, float y, float width, float height, int row, int col) {
+        this.width = width;
+        this.height = height;
         this.row = row;
         this.col = col;
-        this.position.set(x, y);
+        position.set(x, y);
 
         setSize();
 
-        this.dimension.set(col * SIZE, row * SIZE);
+        dimension.set(width, height);
 
-        xOffset = (x - this.dimension.x) / 2;
-        yOffset = (y - this.dimension.y) / 2;
+        this.width = col * SIZE;
+        this.height = row * SIZE;
+
+        dimension.set(this.width, this.height);
+
+        xOffset = (Gdx.graphics.getWidth() - this.dimension.x) / 2;
+        yOffset = (Gdx.graphics.getHeight() - this.dimension.y) / 2;
+        position.set(xOffset, yOffset);
+        System.out.println("xOffset: " + xOffset + ", yOffset: " + yOffset);
     }
 
     private void drawBoard() {
@@ -61,8 +79,9 @@ public class GridBoard extends AbstractGameObject {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1, 1, 1, 1);
-//        shapeRenderer.setColor(0, 0, 0, 1);
-//        shapeRenderer.rect(0, 0, Constants.WIDTH, Constants.HEIGHT);
+        shapeRenderer.setColor(0, 0, 0, 1);
+        shapeRenderer.setColor(1, 1, 0, 1);
+//        shapeRenderer.rect(0, 0, width, height);
 //        shapeRenderer.setColor(0, 0, 0, 1);
         shapeRenderer.rect(xOffset, yOffset, dimension.x, dimension.y);
         shapeRenderer.end();
@@ -72,25 +91,28 @@ public class GridBoard extends AbstractGameObject {
     }
 
     private void setSize() {
-        if(Constants.WIDTH > Constants.HEIGHT && row > col) {
-            SIZE = Constants.HEIGHT / row;
-        } else if(Constants.WIDTH < Constants.HEIGHT && row < col) {
-            SIZE = Constants.WIDTH / col;
-        } else if(Constants.WIDTH < Constants.HEIGHT && row > col) {
-            SIZE = Constants.HEIGHT / row;
-        } else if(Constants.WIDTH > Constants.HEIGHT && row < col) {
-            SIZE = Constants.WIDTH / col;
-        } else if(Constants.WIDTH == Constants.HEIGHT && row > col) {
-            SIZE = Constants.WIDTH / row;
-        } else if(Constants.WIDTH == Constants.HEIGHT && row < col) {
-            SIZE = Constants.WIDTH / col;
-        } else if(Constants.WIDTH > Constants.HEIGHT && row == col) {
-            SIZE = Constants.HEIGHT / row;
-        } else if(Constants.WIDTH == Constants.HEIGHT && row < col) {
-            SIZE = Constants.WIDTH / col;
-        } else if(Constants.WIDTH == Constants.HEIGHT && row == col) {
-            SIZE = Constants.WIDTH / row;
+        if(width > height && row > col) {
+            SIZE = height / row;
+        } else if(width < height && row < col) {
+            SIZE = width / col;
+        } else if(width < height && row > col) {
+            SIZE = height / row;
+        } else if(width > height && row < col) {
+            SIZE = width / col;
+        } else if(width == height && row > col) {
+            SIZE = width / row;
+        } else if(width == height && row < col) {
+            SIZE = width / col;
+        } else if(width > height && row == col) {
+            SIZE = height / row;
+        } else if(width < height && row == col) {
+            SIZE = width / row;
+        } else if(width == height && row < col) {
+            SIZE = width / col;
+        } else if(width == height && row == col) {
+            SIZE = width / row;
         }
+        System.out.println("Width: " + width + ", Height: " + height + ", Row: " + row + ", Col: " + col + ", Size: " + SIZE);
     }
 
     public void update(float dt) {
@@ -128,7 +150,6 @@ public class GridBoard extends AbstractGameObject {
 //                else
 //                    batch.draw(lightgrey, c * SIZE, r * SIZE, SIZE, SIZE);
 //                batch.end();
-
                 gridTiles[r][c].render(batch);
 //                count++;
             }
