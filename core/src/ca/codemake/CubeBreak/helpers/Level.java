@@ -1,6 +1,7 @@
 package ca.codemake.CubeBreak.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -54,8 +55,8 @@ public class Level {
     }
 
     private void init (String filename) {
-        row = 6;
-        col = 10;
+        row = 2;
+        col = 2;
 
 //        gridBoard = new GridBoard(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), row, col);
 
@@ -69,16 +70,20 @@ public class Level {
         // load image file that represents the level data
         Pixmap pixmap = new Pixmap(Gdx.files.internal(filename));
 
-        gridTiles = new GridTile[pixmap.getWidth()][pixmap.getHeight()];
-        System.out.println(pixmap.getWidth() + ", " + pixmap.getHeight());
+        // Create Grid Tiles array [row][col]
+        gridTiles = new GridTile[pixmap.getHeight()][pixmap.getWidth()];
+        System.out.println(pixmap.getHeight() + ", " + pixmap.getWidth());
 
-        row = pixmap.getWidth();
-        col = pixmap.getHeight();
+        row = pixmap.getHeight();
+        col = pixmap.getWidth();
 
         Random rand = new Random();
         int color = 0;
 
-        gridBoard = new GridBoard(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), row, col);
+        float size = getSize(row, col);
+        System.out.println(size);
+//        gridBoard = new GridBoard(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), row, col);
+        gridBoard = new GridBoard(0, 0, size * col, size * row, row, col);
 
         // scan pixels from top-left to bottom-right
         for (int pixelY = 0; pixelY < pixmap.getHeight(); pixelY++) {
@@ -102,11 +107,11 @@ public class Level {
                 }
 
                 obj = new GridTile(color, pixelX * GridBoard.SIZE + gridBoard.getX(), pixelY * GridBoard.SIZE + gridBoard.getY(), GridBoard.SIZE, GridBoard.SIZE, pixelX, pixelY);
-//                    float heighIncreaseFactor = 0.25f;
-                gridTiles[pixelX][pixelY] = (GridTile)obj;
-                System.out.print(color + " ");
+//                    float heightIncreaseFactor = 0.25f;
+                gridTiles[pixelY][pixelX] = (GridTile) obj;
+//                System.out.print(color + " ");
             }
-            System.out.println();
+//            System.out.println();
         }
         gridBoard.setGrid(gridTiles);
     }
@@ -120,15 +125,87 @@ public class Level {
     }
 
     public void handleInput(float dt, Vector3 mouse) {
-//        if(Gdx.app.getType() != Application.ApplicationType.Desktop) return;
-//        if(Gdx.input.isTouched()) {
-//            mouse.x = Gdx.input.getX();
-//            mouse.y = Gdx.input.getY();
-//            CubeBreak.camera.unproject(mouse);
+        mouse.x = mouse.x - gridBoard.xOffset;
+        mouse.y = mouse.y - gridBoard.yOffset;
 
-            System.out.println(((int)(mouse.x / GridBoard.SIZE)) + ", " + ((int)(mouse.y / GridBoard.SIZE)));
-//            System.out.println(gridBoard.gridTiles[(int)(mouse.x / GridBoard.SIZE)][(int)(mouse.y / GridBoard.SIZE)].getColor());
-//        }
+        int c = (int) (mouse.y / gridBoard.SIZE);
+        int r = (int) (mouse.x / gridBoard.SIZE);
 
+//        System.out.println(r + ", " + c);
+
+        if (mouse.x > gridBoard.xOffset && mouse.x < (Gdx.graphics.getWidth() - gridBoard.xOffset) && mouse.y > gridBoard.yOffset && mouse.y < (Gdx.graphics.getHeight() - gridBoard.yOffset)) {
+            gridBoard.switchTile.add(gridBoard.gridTiles[r][c]);
+            System.out.println("Selected Tiles: " + gridBoard.switchTile.size);
+            for (GridTile gt : gridBoard.switchTile) {
+                System.out.println("Row: " + gt.getRow() + ", Col: " + gt.getCol());
+//                gridBoard.gridTiles[r][c].getDetails();
+            }
+        }
+        if (gridBoard.switchTile.size == 2) {
+            System.out.println("SWITCH");
+            gridBoard.switchTile(gridBoard.switchTile.get(0), gridBoard.switchTile.get(1));
+            gridBoard.switchTile.clear();
+        }
+    }
+
+
+
+    public void handleInput(float dt, Vector3 mouse, boolean right) {
+//        mouse.x = mouse.x - gridBoard.xOffset;
+//        mouse.y = mouse.y - gridBoard.yOffset;
+
+        int r = (int) ((mouse.y - gridBoard.yOffset) / gridBoard.SIZE);
+        int c = (int) ((mouse.x - gridBoard.xOffset) / gridBoard.SIZE);
+
+        if(right) {
+//            System.out.println("OUT: " + mouse.x + ", " + mouse.y + " | xOffset: " + gridBoard.xOffset + ", yOffset: " + gridBoard.yOffset + " | Row: " + r + ", Col: " + c);
+            if (mouse.x > gridBoard.xOffset && mouse.x < (Gdx.graphics.getWidth() - gridBoard.xOffset) && mouse.y > gridBoard.yOffset && mouse.y < (Gdx.graphics.getHeight() - gridBoard.yOffset)) {
+//                System.out.println("IN: " + mouse.x + ", " + mouse.y + " | xOffset: " + gridBoard.xOffset + ", yOffset: " + gridBoard.yOffset + " | Row: " + r + ", Col: " + c);
+                gridBoard.switchTile.add(gridBoard.gridTiles[r][c]);
+                System.out.println("Selected Tiles: " + gridBoard.switchTile.size);
+                for (GridTile gt : gridBoard.switchTile) {
+                    System.out.println("Row: " + gt.getRow() + ", Col: " + gt.getCol());
+//                gridBoard.gridTiles[r][c].getDetails();
+                }
+            }
+            if (gridBoard.switchTile.size == 2) {
+                System.out.println("SWITCH");
+                gridBoard.switchTile(gridBoard.switchTile.get(0), gridBoard.switchTile.get(1));
+                gridBoard.switchTile.clear();
+            }
+        } else {
+            gridBoard.gridTiles[r][c].getTargetDetails();
+        }
+    }
+
+    public float getSize(int row, int col) {
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
+        float size = 0;
+
+        if(width > height && row > col) {
+            size = height / row;
+        } else if(width < height && row < col) {
+            size = width / col;
+        } else if(width < height && row > col) {
+            size = height / row;
+        } else if(width > height && row < col) {
+            size = width / col;
+        } else if(width == height && row > col) {
+            size = width / row;
+        } else if(width == height && row < col) {
+            size = width / col;
+        } else if(width > height && row == col) {
+            size = height / row;
+        } else if(width < height && row == col) {
+            size = width / row;
+        } else if(width == height && row < col) {
+            size = width / col;
+        } else if(width == height && row == col) {
+            size = width / row;
+        }
+
+        return size;
+//        System.out.println("Width: " + width + ", Height: " + height + ", Row: " + row + ", Col: " + col + ", Size: " + SIZE);
     }
 }

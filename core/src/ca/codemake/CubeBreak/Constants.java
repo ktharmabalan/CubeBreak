@@ -27,9 +27,9 @@ public class Constants {
     // Description file for texture atlas
     public static final String TEXTURE_ATLAS_OBJECT = "pack.pack";
 
-    // Locastion of image file for Level 01
+    // Location of image file for Level 01
     public static final String LEVEL_01 = "levels/level1.png";
-    public static final String LEVEL_TEST = "levels/level2.png";
+    public static final String TWO_X_TWO_TEST = "levels/2x2test.png";
 
     // Amount of extra lives at level start
     public static final int LIVES_START = 5;

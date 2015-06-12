@@ -25,8 +25,15 @@ public abstract class AbstractGameObject {
 
     public abstract void render (SpriteBatch batch);
 
+    // Getters
     public float getX() { return position.x; }
     public float getY() { return position.y; }
     public float getWidth() { return dimension.x; }
     public float getHeight() { return dimension.y; }
+
+    // Setters
+    public void setX(float x) { position.x = x; }
+    public void setY(float y) { position.y = y; }
+    public void setWidth(float width) { dimension.x = width; }
+    public void setHeight(float height) { dimension.y = height; }
 }
